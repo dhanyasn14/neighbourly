@@ -1,0 +1,116 @@
+.sharecare-container {
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f9f9fc;
+  min-height: 100vh;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+  text-align: center;
+}
+
+.sharecare-content {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.sharecare-form {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  width: 320px;
+  position: sticky;
+  top: 2rem;
+}
+
+.form-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #34495e;
+}
+
+.input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: border-color 0.3s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #0077ff;
+}
+
+.submit-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.submit-btn:hover {
+  background-color: #0056cc;
+}
+
+.posts-section {
+  flex: 1;
+}
+
+.group-block {
+  margin-bottom: 2.5rem;
+}
+
+.group-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2e3a59;
+  margin-bottom: 1rem;
+  text-transform: capitalize;
+  border-bottom: 2px solid #dcdde1;
+  padding-bottom: 4px;
+}
+
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.post-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+  border-left: 4px solid #3498db;
+}
+
+.post-card:hover {
+  transform: translateY(-3px);
+}
+
+.post-card p {
+  margin: 6px 0;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.post-card span {
+  margin-right: 6px;
+  color: #2980b9;
+}

@@ -1,0 +1,106 @@
+.home-container {
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(to right, #e0f7fa, #ffffff);
+  padding: 3rem 4rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Logout Button in Top-Right Corner */
+.logout-button {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  background-color: #ef5350;
+  color: white;
+  font-size: 0.8rem;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100px;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #c62828;
+}
+
+/* Welcome Section */
+h2 {
+  font-size: 2.4rem;
+  margin-bottom: 0.3rem;
+  color: #263238;
+  text-align: center;
+  animation: fadeIn 1s ease;
+}
+
+.welcome-note {
+  font-size: 1rem;
+  color: #546e7a;
+  margin-bottom: 2.5rem;
+  font-style: italic;
+  text-align: center;
+  animation: fadeIn 1.2s ease;
+}
+
+/* Organized Grid for Cards */
+.nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.8rem;
+  width: 100%;
+  max-width: 900px;
+  justify-items: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+/* Card Styles */
+.nav-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 1.5rem 1.2rem;
+  width: 100%;
+  max-width: 180px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav-card:hover {
+  background-color: #e3f2fd;
+  transform: translateY(-6px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+.nav-card i {
+  font-size: 1.7rem;
+  margin-bottom: 0.5rem;
+  color: #1976d2;
+}
+
+.nav-card span {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #37474f;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,161 @@
+/* General Page Styling */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f4f6f9;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+/* Container */
+.account-container {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Header */
+.account-container h2 {
+  font-size: 2.5rem;
+  color: #3a3a8e;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Bank Info */
+.bank-info {
+  background: #f0f4ff;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  border-left: 5px solid #3a3a8e;
+}
+
+/* Filters */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.filter-bar select {
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  min-width: 160px;
+  font-size: 1rem;
+  transition: border 0.3s;
+}
+
+.filter-bar select:focus {
+  border-color: #3a3a8e;
+  outline: none;
+}
+
+/* Totals */
+.totals-bar {
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #444;
+  background-color: #e8f0fe;
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 5px solid #1a73e8;
+}
+
+/* Table Styling */
+.account-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.account-table th,
+.account-table td {
+  padding: 0.9rem 1rem;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.account-table th {
+  background-color: #3a3a8e;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.account-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.account-table tr:hover {
+  background-color: #f0f8ff;
+  transition: background-color 0.3s ease;
+}
+
+.account-table td {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Fun phrase */
+.fun-phrase {
+  text-align: center;
+  font-style: italic;
+  margin-top: 2rem;
+  color: #666;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+.account-container {
+  padding: 2rem;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.bank-info,
+.filter-bar,
+.totals-bar {
+  margin-bottom: 1rem;
+}
+
+.filter-bar select {
+  margin-right: 1rem;
+  padding: 0.5rem;
+}
+
+.account-table-wrapper {
+  flex: 1;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.account-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+}
+
+.account-table th,
+.account-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #0f0a0a;
+}
+
+.account-table th {
+  background-color: #660707;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}

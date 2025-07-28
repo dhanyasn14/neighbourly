@@ -1,0 +1,123 @@
+.meeting-wrapper {
+  font-family: 'Segoe UI', sans-serif;
+  padding: 2rem;
+  background: #f9f9f9;
+  color: #333;
+}
+
+.main-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #4a148c;
+}
+
+.meeting-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.meeting-form {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  min-width: 280px;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.meeting-form label {
+  font-weight: 500;
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.meeting-form input {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.meeting-form button {
+  margin-top: 1rem;
+  padding: 0.7rem;
+  background-color: #4a148c;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.meeting-form button:hover {
+  background-color: #6a1b9a;
+}
+
+.suggestion-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+.suggestion-list li {
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.suggestion-list li:hover {
+  background-color: #f0f0f0;
+}
+
+.meeting-cards {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex: 2;
+}
+
+.card {
+  background: #ffffff;
+  padding: 1rem 1.2rem;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  min-width: 260px;
+  max-width: 300px;
+  flex: 1;
+}
+
+.card h3 {
+  margin-top: 0;
+  color: #2e7d32;
+  font-size: 1.1rem;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 6px;
+}
+
+.card ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0.5rem;
+}
+
+.card li {
+  font-size: 0.9rem;
+  padding: 5px 0;
+  border-bottom: 1px dashed #ccc;
+}
+
+.card li:last-child {
+  border-bottom: none;
+}

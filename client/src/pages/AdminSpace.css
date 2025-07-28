@@ -1,0 +1,188 @@
+.admin-layout {
+  display: flex;
+  height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f8f9fb;
+  color: #333;
+}
+
+/* Sidebar */
+.tab-buttons {
+  width: 200px;
+  background-color: #1e2a38;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10px;
+  gap: 15px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.tab-buttons button {
+  background: none;
+  border: none;
+  color: white;
+  text-align: left;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.tab-buttons button:hover {
+  background-color: #34475a;
+}
+
+.tab-buttons .active {
+  background-color: #007bff;
+}
+
+/* Main Content Area */
+.tab-content-area {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.tab-content-area h1 {
+  font-size: 28px;
+  margin-bottom: 5px;
+}
+
+.admin-tagline {
+  font-size: 15px;
+  margin-bottom: 25px;
+  color: #666;
+}
+
+/* Tab Section Styling */
+.tab-section {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  max-width: 850px;
+  margin-bottom: 30px;
+}
+
+.tab-section h2 {
+  font-size: 21px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 6px;
+}
+
+/* Form Elements */
+.tab-section input,
+.tab-section select {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.tab-section button {
+  padding: 10px 18px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.tab-section button:hover {
+  background-color: #0056b3;
+}
+
+/* Meeting Card */
+.meeting-card {
+  background: #eef4ff;
+  padding: 14px 16px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #cdd8f0;
+}
+
+/* User List */
+.user-list,
+.user-list-horizontal {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.user-list li,
+.user-list-horizontal li {
+  padding: 10px 14px;
+  background: #f1f1f1;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  width: fit-content;
+  transition: background 0.2s ease;
+}
+
+.user-list li:hover,
+.user-list-horizontal li:hover {
+  background-color: #d6e2ff;
+}
+
+.user-list-horizontal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 500px;
+}
+
+.user-list-horizontal li.selected {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Edit Form */
+.edit-user-section {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.edit-user-form {
+  flex-grow: 1;
+  max-width: 400px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+}
+
+.edit-user-form input {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.edit-user-form button {
+  margin-top: 10px;
+}
+
+/* Scrollbar */
+.tab-content-area::-webkit-scrollbar {
+  width: 6px;
+}
+
+.tab-content-area::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 3px;
+}

@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined');
+
+/* Base styles */
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(to right, #f0f3f8, #ffffff);
+  margin: 0;
+  padding: 0;
+}
+
+.commspace-container {
+  padding: 40px 60px;
+  max-width: 1600px;
+  margin: auto;
+}
+
+.commspace-title {
+  text-align: center;
+  font-size: 38px;
+  font-weight: 600;
+  color: #202020;
+  margin-bottom: 50px;
+  letter-spacing: 1px;
+  position: relative;
+}
+
+.commspace-title::after {
+  content: '🌟 Connect. Collaborate. Contribute.';
+  display: block;
+  font-size: 16px;
+  color: #555;
+  margin-top: 8px;
+}
+
+/* Cards container */
+.user-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+
+/* Individual user card base */
+.user-card {
+  background: #ffffff;
+  border-radius: 18px;
+  width: 330px;
+  padding: 24px 26px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  animation: fadeInUp 0.6s ease forwards;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  color: #333;
+  border-left: 6px solid #3498db;
+}
+
+.user-card:nth-child(2n) {
+  border-left: 6px solid #9b59b6;
+  background: linear-gradient(to top right, #f9f5ff, #ffffff);
+}
+
+.user-card:nth-child(3n) {
+  border-left: 6px solid #e67e22;
+  background: linear-gradient(to top right, #fff9f0, #ffffff);
+}
+
+.user-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+}
+
+.user-card h3 {
+  font-size: 22px;
+  color: #222;
+  margin: 0 0 10px 0;
+}
+
+/* Label-value pairs */
+.user-card p {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: 15px;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.user-card p strong {
+  width: 130px;
+  font-weight: 600;
+  color: #333;
+  flex-shrink: 0;
+}
+
+/* Material icon for each line */
+.user-card p::before {
+  font-family: 'Material Symbols Outlined';
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  margin-right: 6px;
+  font-size: 18px;
+  color: #888;
+}
+
+.user-card p:nth-of-type(2)::before { content: 'person'; }
+.user-card p:nth-of-type(3)::before { content: 'call'; }
+.user-card p:nth-of-type(4)::before { content: 'mail'; }
+.user-card p:nth-of-type(5)::before { content: 'home'; }
+.user-card p:nth-of-type(6)::before { content: 'work'; }
+.user-card p:nth-of-type(7)::before { content: 'business_center'; }
+.user-card p:nth-of-type(8)::before { content: 'location_on'; }
+.user-card p:nth-of-type(9)::before { content: 'volunteer_activism'; }
+
+/* Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 950px) {
+  .user-card {
+    width: 100%;
+  }
+}
