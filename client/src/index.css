@@ -1,3 +1,23 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --ink: #172033;
+  --muted: #64748b;
+  --surface: #ffffff;
+  --line: rgba(15, 23, 42, 0.1);
+  --teal: #0f766e;
+  --blue: #1d4ed8;
+  --blue-dark: #1e40af;
+  --rose: #be123c;
+  --amber: #b45309;
+  --mint: #e6f5f2;
+  --sky: #eaf1ff;
+  --peach: #fff4e5;
+  --page-bg: #f4f6f8;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,9 +25,262 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: var(--page-bg);
+  color: var(--ink);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.eyebrow {
+  display: inline-flex;
+  width: fit-content;
+  margin-bottom: 0.85rem;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid #c8d6f5;
+  border-radius: 999px;
+  background: var(--sky);
+  color: var(--blue-dark);
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.page-hero.compact {
+  padding: clamp(1.35rem, 3vw, 2.1rem);
+  border: 1px solid #d9e1ea;
+  border-left: 5px solid var(--blue);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: 0 12px 28px rgba(24, 33, 47, 0.06);
+}
+
+.page-hero.compact h1 {
+  max-width: 850px;
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(1.8rem, 3.4vw, 3.4rem);
+  line-height: 1.04;
+  letter-spacing: 0;
+}
+
+.page-hero.compact p {
+  max-width: 760px;
+  margin: 0.75rem 0 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.event-tabs,
+.meeting-tabs,
+.sharecare-tabs,
+.account-tabs {
+  align-self: flex-start;
+}
+
+.event-tabs button.active,
+.event-tabs button:hover,
+.meeting-tabs button.active,
+.meeting-tabs button:hover,
+.sharecare-tabs button.active,
+.sharecare-tabs button:hover,
+.account-tabs button.active,
+.account-tabs button:hover {
+  background: var(--blue);
+  color: #ffffff;
+}
+
+@media (min-width: 961px) {
+  .event-page,
+  .meeting-wrapper,
+  .sharecare-container,
+  .account-container {
+    padding-left: 15.5rem;
+  }
+
+  .event-tabs,
+  .meeting-tabs,
+  .sharecare-tabs,
+  .account-tabs {
+    position: fixed;
+    top: 9.2rem;
+    left: max(1rem, calc((100vw - 1240px) / 2));
+    z-index: 16;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 14rem !important;
+    max-height: calc(100vh - 10.2rem);
+    overflow: auto;
+    gap: 0.55rem;
+    padding: 0.85rem !important;
+    border: 1px solid #d9e1ea !important;
+    border-radius: 14px !important;
+    background: #ffffff !important;
+    box-shadow: 0 12px 28px rgba(24, 33, 47, 0.08) !important;
+  }
+
+  .event-tabs::before,
+  .meeting-tabs::before,
+  .sharecare-tabs::before,
+  .account-tabs::before {
+    display: block;
+    margin: 0 0.25rem 0.35rem;
+    padding-bottom: 0.55rem;
+    border-bottom: 1px solid #e2e8f0;
+    color: #172033;
+    font-size: 0.8rem;
+    font-weight: 950;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .event-tabs::before {
+    content: "Events";
+  }
+
+  .meeting-tabs::before {
+    content: "Meetings";
+  }
+
+  .sharecare-tabs::before {
+    content: "ShareCare";
+  }
+
+  .account-tabs::before {
+    content: "Transactions";
+  }
+
+  .event-tabs button,
+  .meeting-tabs button,
+  .sharecare-tabs button,
+  .account-tabs button {
+    justify-content: flex-start;
+    width: 100% !important;
+    min-height: 54px;
+    gap: 0.65rem !important;
+    padding: 0 0.95rem !important;
+    border-radius: 10px !important;
+    white-space: normal !important;
+    text-align: left !important;
+    color: #475569;
+    font-size: 0.9rem !important;
+  }
+
+  .event-tabs button i,
+  .meeting-tabs button i,
+  .sharecare-tabs button i,
+  .account-tabs button i {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    min-width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: #f4f6f8;
+    color: #1d4ed8;
+  }
+
+  .event-tabs button.active i,
+  .event-tabs button:hover i,
+  .meeting-tabs button.active i,
+  .meeting-tabs button:hover i,
+  .sharecare-tabs button.active i,
+  .sharecare-tabs button:hover i,
+  .account-tabs button.active i,
+  .account-tabs button:hover i {
+    background: #ffffff;
+    color: #1d4ed8;
+  }
+
+  .event-page,
+  .meeting-wrapper,
+  .sharecare-container {
+    padding-left: 18.75rem;
+  }
+
+  .event-tabs,
+  .meeting-tabs,
+  .sharecare-tabs {
+    width: 17rem !important;
+    gap: 0.8rem;
+    padding: 1rem !important;
+  }
+
+  .event-tabs::before,
+  .meeting-tabs::before,
+  .sharecare-tabs::before {
+    margin: 0 0.35rem 0.25rem;
+    padding-bottom: 0.7rem;
+    font-size: 0.82rem;
+  }
+
+  .event-tabs button,
+  .meeting-tabs button,
+  .sharecare-tabs button {
+    min-height: 66px;
+    gap: 0.9rem !important;
+    padding: 0 1rem !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    background: #f8fafc;
+    color: #334155;
+    font-size: 0.94rem !important;
+    line-height: 1.25;
+    box-shadow: 0 1px 0 rgba(24, 33, 47, 0.03);
+  }
+
+  .event-tabs button.active,
+  .event-tabs button:hover,
+  .meeting-tabs button.active,
+  .meeting-tabs button:hover,
+  .sharecare-tabs button.active,
+  .sharecare-tabs button:hover {
+    border-color: #1d4ed8 !important;
+    background: #1d4ed8;
+    color: #ffffff;
+  }
+
+  .event-tabs button i,
+  .meeting-tabs button i,
+  .sharecare-tabs button i {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 960px) {
+  .event-tabs,
+  .meeting-tabs,
+  .sharecare-tabs,
+  .account-tabs {
+    position: static;
+  }
+}
+
+.nav-card small,
+.user-card p,
+.post-card p,
+.meeting-list li,
+.card li,
+.schedule-card p,
+.warning-card p,
+.event-info-copy,
+.profile-info p,
+.bank-info p,
+.sharecare-comments p {
+  font-size: 0.84rem;
+  line-height: 1.45;
 }

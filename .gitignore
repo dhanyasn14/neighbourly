@@ -1,0 +1,32 @@
+.DS_Store
+
+# dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# local npm caches
+.npm-cache/
+client/.npm-cache/
+server/.npm-cache/
+
+# environment files
+.env
+.env.*
+client/.env
+client/.env.*
+server/.env
+server/.env.*
+!.env.example
+!client/.env.example
+!server/.env.example
+
+# build and test output
+build/
+client/build/
+coverage/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

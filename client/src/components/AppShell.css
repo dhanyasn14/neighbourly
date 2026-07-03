@@ -1,0 +1,170 @@
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f4f6f8;
+  color: #172033;
+}
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: minmax(190px, 240px) 1fr auto;
+  gap: 1.25rem;
+  align-items: center;
+  padding: 0.85rem clamp(1rem, 3vw, 2.5rem);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+}
+
+.brand-mark {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+
+.brand-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: #ffffff;
+  object-fit: cover;
+  box-shadow: 0 12px 26px rgba(37, 99, 235, 0.22);
+}
+
+.brand-mark strong,
+.brand-mark small {
+  display: block;
+}
+
+.brand-mark strong {
+  font-size: 1.05rem;
+}
+
+.brand-mark small {
+  color: #64748b;
+  font-size: 0.75rem;
+  margin-top: 0.1rem;
+}
+
+.app-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.app-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.app-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.62rem 0.78rem;
+  border-radius: 999px;
+  color: #475569;
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.app-nav a:hover,
+.app-nav a.active {
+  background: #eaf1ff;
+  color: #1e40af;
+}
+
+.header-user {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.7rem;
+  color: #334155;
+  font-weight: 700;
+}
+
+.header-user button {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  margin: 0;
+  border-radius: 9px;
+  border: 1px solid #d6e0dd;
+  background: #fff;
+  color: #0f766e;
+  cursor: pointer;
+}
+
+.header-user button:hover {
+  background: #1d4ed8;
+  color: #fff;
+  transform: none;
+}
+
+.app-main {
+  flex: 1;
+  width: min(1240px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 1.5rem 0 2.25rem;
+}
+
+.app-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem clamp(1rem, 3vw, 2.5rem);
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  color: #64748b;
+  font-size: 0.85rem;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.app-footer span:first-child {
+  font-weight: 800;
+  color: #0f766e;
+}
+
+@media (max-width: 960px) {
+  .app-header {
+    grid-template-columns: 1fr auto;
+  }
+
+  .app-nav {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-header {
+    padding: 0.75rem 1rem;
+  }
+
+  .brand-mark small,
+  .header-user span,
+  .app-nav a span {
+    display: none;
+  }
+
+  .app-nav a {
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .app-footer {
+    flex-direction: column;
+  }
+}

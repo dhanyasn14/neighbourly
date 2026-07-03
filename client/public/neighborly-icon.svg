@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Neighborly">
+  <rect width="64" height="64" rx="14" fill="#183153"/>
+  <path d="M14 33.5 32 18l18 15.5v18a2.5 2.5 0 0 1-2.5 2.5h-31A2.5 2.5 0 0 1 14 51.5v-18Z" fill="#ffffff"/>
+  <path d="M23 54V36h18v18" fill="#eaf1ff"/>
+  <path d="M25 54V39h14v15" fill="#1d4ed8"/>
+  <path d="M21 31.5 32 22l11 9.5" fill="none" stroke="#0f766e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="32" cy="46" r="2" fill="#ffffff"/>
+</svg>

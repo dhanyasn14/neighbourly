@@ -1,161 +1,548 @@
-/* General Page Styling */
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f4f6f9;
-  margin: 0;
-  padding: 0;
-  color: #333;
-}
-
-/* Container */
 .account-container {
-  max-width: 1100px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-/* Header */
-.account-container h2 {
-  font-size: 2.5rem;
-  color: #3a3a8e;
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-/* Bank Info */
-.bank-info {
-  background: #f0f4ff;
-  padding: 1rem;
-  border-radius: 8px;
-  margin-bottom: 1.5rem;
-  border-left: 5px solid #3a3a8e;
-}
-
-/* Filters */
-.filter-bar {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 1rem;
-  margin-bottom: 1.5rem;
+}
+
+.bank-info,
+.filter-bar,
+.totals-bar,
+.account-table-wrapper,
+.analytics-summary-card,
+.analytics-card {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+}
+
+.account-tabs {
+  display: inline-flex;
+  width: fit-content;
+  gap: 0.35rem;
+  padding: 0.35rem;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+}
+
+.account-tabs button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: auto;
+  min-height: 40px;
+  margin: 0;
+  padding: 0 0.9rem;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #475569;
+  font-weight: 850;
+}
+
+.account-tabs button.active,
+.account-tabs button:hover {
+  background: #1d4ed8;
+  color: #ffffff;
+  transform: none;
+}
+
+.bank-info {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+  padding: 1rem;
+}
+
+.bank-info p {
+  margin: 0;
+  padding: 0.8rem;
+  border-radius: 12px;
+  background: #f8fafc;
+  color: #475569;
+}
+
+.bank-info strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: #172033;
+}
+
+.filter-bar {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(160px, 1fr));
+  gap: 0.8rem;
+  padding: 1rem;
 }
 
 .filter-bar select {
-  padding: 0.6rem 0.8rem;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  background-color: #fff;
-  min-width: 160px;
-  font-size: 1rem;
-  transition: border 0.3s;
+  min-height: 42px;
+  padding: 0 0.75rem;
+  border: 1px solid #d7e1de;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #172033;
+  font-size: 0.94rem;
 }
 
-.filter-bar select:focus {
-  border-color: #3a3a8e;
-  outline: none;
-}
-
-/* Totals */
 .totals-bar {
-  margin-bottom: 1.5rem;
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: #444;
-  background-color: #e8f0fe;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
   padding: 1rem;
-  border-radius: 8px;
-  border-left: 5px solid #1a73e8;
 }
 
-/* Table Styling */
+.totals-bar span {
+  padding: 1rem;
+  border-radius: 12px;
+  background: #1d4ed8;
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 900;
+}
+
+.totals-bar strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: #d9ece7;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+}
+
+.account-table-wrapper {
+  overflow: auto;
+}
+
 .account-table {
   width: 100%;
+  min-width: 820px;
   border-collapse: collapse;
-  background-color: #fff;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
-  border-radius: 6px;
-  overflow: hidden;
 }
 
 .account-table th,
 .account-table td {
   padding: 0.9rem 1rem;
   text-align: left;
-  font-size: 0.95rem;
+  border-bottom: 1px solid #edf2f0;
+  color: #475569;
+  font-size: 0.94rem;
 }
 
 .account-table th {
-  background-color: #3a3a8e;
-  color: white;
-  font-weight: 600;
+  position: sticky;
+  top: 0;
+  background: #f8fafc;
+  color: #172033;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  z-index: 1;
+}
+
+.account-table tr:hover td {
+  background: #fbfdfc;
+}
+
+.ledger-id-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.ledger-id-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 0.55rem;
+  border-radius: 999px;
+  background: #dbeafe;
+  color: #1e3a8a;
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.ledger-id-link:hover {
+  background: #1d4ed8;
+  color: #ffffff;
+}
+
+.analytics-dashboard {
+  display: grid;
+  gap: 1rem;
+}
+
+.donation-panel,
+.donation-card {
+  display: grid;
+  gap: 1rem;
+}
+
+.donation-card {
+  padding: 1.1rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+}
+
+.donation-heading h2 {
+  margin: 0;
+  color: #172033;
+}
+
+.payment-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.payment-detail-grid p,
+.upi-payment-box,
+.payment-note {
+  margin: 0;
+  padding: 0.85rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #f8fafc;
+  color: #475569;
+}
+
+.payment-detail-grid strong,
+.upi-payment-box span,
+.upi-payment-box label {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: #172033;
+  font-size: 0.78rem;
+  font-weight: 900;
   text-transform: uppercase;
 }
 
-.account-table tr:nth-child(even) {
-  background-color: #f9f9f9;
+.upi-payment-box {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(150px, 190px) auto;
+  gap: 0.85rem;
+  align-items: end;
+  border-left: 5px solid #0f766e;
 }
 
-.account-table tr:hover {
-  background-color: #f0f8ff;
-  transition: background-color 0.3s ease;
+.upi-payment-box strong {
+  color: #0f766e;
+  font-size: 1.2rem;
 }
 
-.account-table td {
-  border-bottom: 1px solid #e0e0e0;
+.upi-payment-box small {
+  display: block;
+  margin-top: 0.2rem;
+  color: #64748b;
+  font-weight: 800;
 }
 
-/* Fun phrase */
-.fun-phrase {
-  text-align: center;
-  font-style: italic;
-  margin-top: 2rem;
-  color: #666;
-  font-size: 1rem;
-  opacity: 0.9;
-}
-.account-container {
-  padding: 2rem;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.bank-info,
-.filter-bar,
-.totals-bar {
-  margin-bottom: 1rem;
-}
-
-.filter-bar select {
-  margin-right: 1rem;
-  padding: 0.5rem;
-}
-
-.account-table-wrapper {
-  flex: 1;
-  overflow-y: auto;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-}
-
-.account-table {
+.upi-payment-box input {
   width: 100%;
-  border-collapse: collapse;
-  min-width: 800px;
+  min-height: 42px;
+  padding: 0 0.75rem;
+  border: 1px solid #cfd8e3;
+  border-radius: 10px;
 }
 
-.account-table th,
-.account-table td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #0f0a0a;
+.upi-pay-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 42px;
+  padding: 0 0.95rem;
+  border-radius: 10px;
+  background: #0f766e;
+  color: #ffffff;
+  font-weight: 900;
+  text-decoration: none;
 }
 
-.account-table th {
-  background-color: #660707;
-  position: sticky;
-  top: 0;
-  z-index: 1;
+.analytics-summary-card {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.9fr) minmax(0, 1.35fr);
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: #ffffff;
+  color: #172033;
+}
+
+.analytics-summary-card h2 {
+  margin: 0.25rem 0;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+}
+
+.finance-copy .eyebrow {
+  border-color: #c8d6f5;
+  background: #eaf1ff;
+  color: #1e40af;
+}
+
+.flow-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+.flow-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.65rem;
+  border-radius: 999px;
+  background: #f4f6f8;
+  color: #334155;
+  font-size: 0.84rem;
+  font-weight: 850;
+}
+
+.credit-dot,
+.debit-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.credit-dot {
+  background: #0f766e;
+}
+
+.debit-dot {
+  background: #be123c;
+}
+
+.finance-snapshot {
+  display: grid;
+  grid-template-columns: minmax(140px, 0.8fr) repeat(3, minmax(120px, 1fr));
+  gap: 0.75rem;
+}
+
+.balance-meter,
+.snapshot-stat {
+  min-height: 132px;
+  padding: 0.85rem;
+  border: 1px solid #d9e1ea;
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.balance-meter {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  border-left: 5px solid #0f766e;
+}
+
+.balance-meter span {
+  display: grid;
+  place-items: center;
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  background: #e6f5f2;
+  color: #0f766e;
+  font-size: 1.35rem;
+  font-weight: 900;
+}
+
+.balance-meter small {
+  color: #64748b;
+  font-weight: 850;
+}
+
+.snapshot-stat {
+  display: grid;
+  align-content: space-between;
+  gap: 0.45rem;
+}
+
+.snapshot-stat span {
+  color: #64748b;
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.snapshot-stat strong,
+.snapshot-stat a {
+  color: #172033;
+  font-size: 1rem;
+  font-weight: 900;
+  text-decoration: none;
+  word-break: break-word;
+}
+
+.snapshot-stat small {
+  color: #1d4ed8;
+  font-size: 0.84rem;
+  font-weight: 900;
+}
+
+.donut-chart {
+  width: 150px;
+  min-width: 150px;
+  transform: rotate(-90deg);
+}
+
+.donut-chart circle {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.22);
+  stroke-width: 14;
+}
+
+.donut-chart circle:nth-child(2) {
+  stroke: #7dd3fc;
+  stroke-linecap: round;
+}
+
+.donut-chart text {
+  fill: #ffffff;
+  text-anchor: middle;
+  transform: rotate(90deg);
+  transform-origin: 60px 60px;
+  font-weight: 900;
+}
+
+.donut-chart text:last-child {
+  fill: #dbeafe;
+  font-size: 0.62rem;
+}
+
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.analytics-card {
+  display: grid;
+  align-content: start;
+  gap: 0.85rem;
+  padding: 1rem;
+}
+
+.analytics-card.wide {
+  grid-column: 1 / -1;
+}
+
+.analytics-card h3 {
+  margin: 0;
+  color: #172033;
+}
+
+.analytics-card-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.analytics-card-heading span {
+  color: #64748b;
+  font-size: 0.8rem;
+  font-weight: 850;
+}
+
+.chart-panel {
+  display: grid;
+  gap: 0.75rem;
+  min-height: 300px;
+}
+
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.chart-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid #d9e1ea;
+  border-radius: 999px;
+  background: #f8fafc;
+  color: #334155;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.chart-legend i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.line-chart {
+  width: 100%;
+  min-height: 250px;
+  overflow: visible;
+}
+
+.chart-grid-line {
+  stroke: #e2e8f0;
+  stroke-width: 1;
+}
+
+.chart-axis-line {
+  stroke: #94a3b8;
+  stroke-width: 1.2;
+}
+
+.chart-axis-label,
+.chart-x-label {
+  fill: #64748b;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.chart-value-label {
+  font-size: 0.7rem;
+  font-weight: 900;
+}
+
+.chart-x-label {
+  dominant-baseline: middle;
+}
+
+.chart-point-link {
+  color: #64748b;
+}
+
+.empty-analytics {
+  margin: 0;
+  color: #64748b;
+}
+
+@media (max-width: 900px) {
+  .bank-info,
+  .filter-bar,
+  .totals-bar {
+    grid-template-columns: 1fr;
+  }
+
+  .analytics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .analytics-summary-card,
+  .finance-snapshot {
+    grid-template-columns: 1fr;
+  }
+
+  .analytics-summary-card {
+    align-items: flex-start;
+  }
+
+  .payment-detail-grid,
+  .upi-payment-box {
+    grid-template-columns: 1fr;
+  }
 }

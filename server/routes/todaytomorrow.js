@@ -3,6 +3,7 @@ const router = express.Router();
 const Event = require('../models/Event');
 const Meeting = require('../models/Meeting');
 const ShareCare = require('../models/ShareCare');
+const { requireAuth } = require('../middleware/auth');
 
 function getStartAndEnd(date) {
   const start = new Date(date);
@@ -12,7 +13,7 @@ function getStartAndEnd(date) {
   return { start, end };
 }
 
-router.get('/', async (req, res) => {
+router.get('/', requireAuth, async (req, res) => {
   try {
     const now = new Date();
     const istOffset = 5.5 * 60 * 60 * 1000; // IST offset in ms
