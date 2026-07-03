@@ -1,12 +1,14 @@
-import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { clearSession } from '../services/api';
+import React, { useEffect, useState } from 'react';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { apiFetch, clearSession, getToken } from '../services/api';
 import './AppShell.css';
 
 function AppShell({ children, userType, setUserType }) {
   const navigate = useNavigate();
+  const location = useLocation();
   const username = localStorage.getItem('username');
   const isAdmin = userType === 'admin';
+  const [alertCount, setAlertCount] = useState(0);
 
   const navItems = [
     { label: 'Dashboard', path: '/home', icon: 'fa-table-columns' },
@@ -22,6 +24,46 @@ function AppShell({ children, userType, setUserType }) {
   if (isAdmin) {
     navItems.push({ label: 'Admin', path: '/admin', icon: 'fa-shield-halved' });
   }
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const fetchAlertCount = async () => {
+      if (!getToken()) {
+        if (isMounted) setAlertCount(0);
+        return;
+      }
+
+      try {
+        const res = await apiFetch('/alerts');
+        if (!res.ok) return;
+
+        const data = await res.json();
+        const count =
+          (data.warnings?.length || 0) +
+          (data.events?.today?.length || 0) +
+          (data.events?.tomorrow?.length || 0) +
+          (data.meetings?.today?.length || 0) +
+          (data.meetings?.tomorrow?.length || 0);
+
+        if (isMounted) {
+          setAlertCount(count);
+        }
+      } catch (err) {
+        if (isMounted) {
+          setAlertCount(0);
+        }
+      }
+    };
+
+    fetchAlertCount();
+    const intervalId = window.setInterval(fetchAlertCount, 60000);
+
+    return () => {
+      isMounted = false;
+      window.clearInterval(intervalId);
+    };
+  }, [location.pathname]);
 
   const handleLogout = () => {
     clearSession();
@@ -45,6 +87,9 @@ function AppShell({ children, userType, setUserType }) {
             <NavLink key={item.path} to={item.path} className={({ isActive }) => isActive ? 'active' : ''}>
               <i className={`fa-solid ${item.icon}`} aria-hidden="true"></i>
               <span>{item.label}</span>
+              {item.path === '/alerts' && alertCount > 0 && (
+                <span className="alert-menu-dot" aria-label={`${alertCount} active alerts`}></span>
+              )}
             </NavLink>
           ))}
         </nav>

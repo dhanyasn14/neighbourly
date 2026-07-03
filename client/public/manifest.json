@@ -3,6 +3,18 @@
   "name": "Neighborly Community Portal",
   "icons": [
     {
+      "src": "logo192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
       "src": "neighborly-icon.svg",
       "sizes": "64x64 192x192 512x512",
       "type": "image/svg+xml",

@@ -65,6 +65,7 @@
 }
 
 .app-nav a {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
@@ -81,6 +82,18 @@
 .app-nav a.active {
   background: #eaf1ff;
   color: #1e40af;
+}
+
+.alert-menu-dot {
+  position: absolute;
+  top: 0.42rem;
+  right: 0.5rem;
+  width: 0.58rem;
+  height: 0.58rem;
+  border: 2px solid #ffffff;
+  border-radius: 999px;
+  background: #dc2626;
+  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.16);
 }
 
 .header-user {
@@ -162,6 +175,11 @@
     height: 40px;
     justify-content: center;
     padding: 0;
+  }
+
+  .alert-menu-dot {
+    top: 0.38rem;
+    right: 0.38rem;
   }
 
   .app-footer {
