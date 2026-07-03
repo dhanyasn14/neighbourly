@@ -16,7 +16,6 @@ function AppShell({ children, userType, setUserType }) {
     { label: 'Meetings', path: '/meeting', icon: 'fa-handshake' },
     { label: 'Events', path: '/events', icon: 'fa-calendar-days' },
     { label: 'Alerts', path: '/alerts', icon: 'fa-bell' },
-    { label: 'AI', path: '/ai', icon: 'fa-wand-magic-sparkles' },
     { label: 'ShareCare', path: '/sharecare', icon: 'fa-hand-holding-heart' },
     { label: 'Accounts', path: '/accounts', icon: 'fa-wallet' },
     { label: 'Profile', path: '/profile', icon: 'fa-user' },
@@ -75,12 +74,24 @@ function AppShell({ children, userType, setUserType }) {
   return (
     <div className="app-shell">
       <header className="app-header">
-        <div className="brand-mark" onClick={() => navigate('/home')}>
-          <img className="brand-icon" src={`${process.env.PUBLIC_URL}/neighborly-icon.svg`} alt="" aria-hidden="true" />
-          <span>
-            <strong>Neighborly</strong>
-            <small>Community Portal</small>
-          </span>
+        <div className="brand-zone">
+          <div className="brand-mark" onClick={() => navigate('/home')}>
+            <img className="brand-icon" src={`${process.env.PUBLIC_URL}/neighborly-icon.svg`} alt="" aria-hidden="true" />
+            <span>
+              <strong>Neighborly</strong>
+              <small>Community Portal</small>
+            </span>
+          </div>
+          <button
+            type="button"
+            className={location.pathname === '/ai' ? 'ai-shortcut active' : 'ai-shortcut'}
+            onClick={() => navigate('/ai')}
+            title="Community AI"
+            aria-label="Community AI"
+          >
+            <i className="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
+            <span>AI</span>
+          </button>
         </div>
 
         <nav className="app-nav" aria-label="Primary navigation">
