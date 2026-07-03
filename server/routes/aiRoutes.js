@@ -193,7 +193,6 @@ function serializeShareCare(post) {
     details: post.details,
     status: post.status,
     username: post.username,
-    contact: post.contact,
     tuition: post.tuition || {},
     carpool: post.carpool || {},
     resource: post.resource || {},
