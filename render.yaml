@@ -20,11 +20,11 @@ services:
         value: 8h
       - key: RESET_OTP_SECRET
         generateValue: true
-      - key: OPENAI_API_KEY
+      - key: GEMINI_API_KEY
         sync: false
-      - key: OPENAI_MODEL
-        value: gpt-5.4-mini
-      - key: OPENAI_TIMEOUT_MS
+      - key: GEMINI_MODEL
+        value: gemini-3.1-flash-lite
+      - key: GEMINI_TIMEOUT_MS
         value: "30000"
       - key: SMTP_HOST
         value: smtp.gmail.com

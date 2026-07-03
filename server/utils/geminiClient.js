@@ -1,21 +1,29 @@
-const OPENAI_RESPONSES_URL = 'https://api.openai.com/v1/responses';
-const DEFAULT_MODEL = 'gpt-5.4-mini';
+const GEMINI_INTERACTIONS_URL = 'https://generativelanguage.googleapis.com/v1beta/interactions';
+const DEFAULT_MODEL = 'gemini-3.1-flash-lite';
 const DEFAULT_TIMEOUT_MS = 30000;
 
-function getOpenAiConfig() {
-  const apiKey = String(process.env.OPENAI_API_KEY || '').trim();
+function getGeminiConfig() {
+  const apiKey = String(process.env.GEMINI_API_KEY || '').trim();
 
   if (!apiKey) {
-    const err = new Error('OPENAI_API_KEY is not configured');
-    err.code = 'OPENAI_NOT_CONFIGURED';
+    const err = new Error('GEMINI_API_KEY is not configured');
+    err.code = 'GEMINI_NOT_CONFIGURED';
     throw err;
   }
 
   return {
     apiKey,
-    model: String(process.env.OPENAI_MODEL || DEFAULT_MODEL).trim() || DEFAULT_MODEL,
-    timeoutMs: Number(process.env.OPENAI_TIMEOUT_MS || DEFAULT_TIMEOUT_MS),
+    model: String(process.env.GEMINI_MODEL || DEFAULT_MODEL).trim() || DEFAULT_MODEL,
+    timeoutMs: Number(process.env.GEMINI_TIMEOUT_MS || DEFAULT_TIMEOUT_MS),
   };
+}
+
+function normalizeSchema(textFormat) {
+  if (!textFormat) {
+    return null;
+  }
+
+  return textFormat.schema || textFormat;
 }
 
 function extractOutputText(data) {
@@ -25,10 +33,18 @@ function extractOutputText(data) {
 
   const parts = [];
 
-  for (const item of data?.output || []) {
-    for (const content of item.content || []) {
+  for (const step of data?.steps || []) {
+    for (const content of step.content || []) {
       if (typeof content.text === 'string') {
         parts.push(content.text);
+      }
+    }
+  }
+
+  for (const candidate of data?.candidates || []) {
+    for (const part of candidate.content?.parts || []) {
+      if (typeof part.text === 'string') {
+        parts.push(part.text);
       }
     }
   }
@@ -37,27 +53,34 @@ function extractOutputText(data) {
 }
 
 async function createResponse({ instructions, input, textFormat, maxOutputTokens = 900 }) {
-  const { apiKey, model, timeoutMs } = getOpenAiConfig();
+  const { apiKey, model, timeoutMs } = getGeminiConfig();
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), timeoutMs);
+  const schema = normalizeSchema(textFormat);
 
   const body = {
     model,
-    instructions,
+    system_instruction: instructions,
     input,
-    max_output_tokens: maxOutputTokens,
-    store: false,
+    generation_config: {
+      max_output_tokens: maxOutputTokens,
+      temperature: 0.2,
+    },
   };
 
-  if (textFormat) {
-    body.text = { format: textFormat };
+  if (schema) {
+    body.response_format = {
+      type: 'text',
+      mime_type: 'application/json',
+      schema,
+    };
   }
 
   try {
-    const response = await fetch(OPENAI_RESPONSES_URL, {
+    const response = await fetch(GEMINI_INTERACTIONS_URL, {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${apiKey}`,
+        'x-goog-api-key': apiKey,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(body),
@@ -67,7 +90,7 @@ async function createResponse({ instructions, input, textFormat, maxOutputTokens
     const data = await response.json().catch(() => ({}));
 
     if (!response.ok) {
-      const err = new Error(data?.error?.message || 'OpenAI request failed');
+      const err = new Error(data?.error?.message || 'Gemini request failed');
       err.status = response.status;
       err.details = data?.error;
       throw err;
@@ -76,7 +99,7 @@ async function createResponse({ instructions, input, textFormat, maxOutputTokens
     const outputText = extractOutputText(data);
 
     if (!outputText) {
-      const err = new Error('OpenAI returned an empty response');
+      const err = new Error('Gemini returned an empty response');
       err.status = 502;
       throw err;
     }
@@ -84,11 +107,11 @@ async function createResponse({ instructions, input, textFormat, maxOutputTokens
     return {
       text: outputText,
       model: data.model || model,
-      usage: data.usage || null,
+      usage: data.usageMetadata || data.usage || null,
     };
   } catch (err) {
     if (err.name === 'AbortError') {
-      const timeoutErr = new Error('OpenAI request timed out');
+      const timeoutErr = new Error('Gemini request timed out');
       timeoutErr.status = 504;
       throw timeoutErr;
     }

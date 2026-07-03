@@ -10,7 +10,7 @@ const LocalUser = require('../models/LocalUser');
 const Meeting = require('../models/Meeting');
 const ShareCare = require('../models/ShareCare');
 const { requireAdmin, requireAuth } = require('../middleware/auth');
-const { createResponse, parseJsonOutput } = require('../utils/openaiResponses');
+const { createResponse, parseJsonOutput } = require('../utils/geminiClient');
 
 router.use(requireAuth);
 
@@ -397,8 +397,8 @@ const alertDraftSchema = {
 };
 
 function handleAiError(err, res) {
-  if (err.code === 'OPENAI_NOT_CONFIGURED') {
-    return res.status(503).json({ error: 'AI is not configured. Add OPENAI_API_KEY on the server.' });
+  if (err.code === 'GEMINI_NOT_CONFIGURED') {
+    return res.status(503).json({ error: 'AI is not configured. Add GEMINI_API_KEY on the server.' });
   }
 
   return res.status(err.status || 500).json({ error: err.message || 'AI request failed' });
