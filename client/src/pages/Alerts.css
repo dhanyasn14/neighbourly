@@ -252,6 +252,7 @@
 
 .message-field,
 .email-toggle,
+.ai-draft-button,
 .warning-composer button[type="submit"] {
   grid-column: 1 / -1;
 }
@@ -277,6 +278,56 @@
   background: #1d4ed8;
   color: #ffffff;
   font-weight: 900;
+}
+
+.ai-draft-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  margin: 0;
+  border: 1px solid #bfdbfe;
+  border-radius: 6px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-weight: 900;
+}
+
+.ai-draft-button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.ai-draft-review {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.9rem;
+  padding: 0.85rem;
+  border: 1px solid #bfdbfe;
+  border-radius: 10px;
+  background: #eff6ff;
+}
+
+.ai-draft-review div {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.ai-draft-review strong {
+  color: #1e3a8a;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+}
+
+.ai-draft-review span {
+  color: #334155;
+  font-weight: 750;
+}
+
+.ai-draft-checklist {
+  grid-column: 1 / -1;
 }
 
 .alert-status {
@@ -362,6 +413,10 @@
   }
 
   .warning-composer form {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-draft-review {
     grid-template-columns: 1fr;
   }
 }

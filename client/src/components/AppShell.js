@@ -16,6 +16,7 @@ function AppShell({ children, userType, setUserType }) {
     { label: 'Meetings', path: '/meeting', icon: 'fa-handshake' },
     { label: 'Events', path: '/events', icon: 'fa-calendar-days' },
     { label: 'Alerts', path: '/alerts', icon: 'fa-bell' },
+    { label: 'AI', path: '/ai', icon: 'fa-wand-magic-sparkles' },
     { label: 'ShareCare', path: '/sharecare', icon: 'fa-hand-holding-heart' },
     { label: 'Accounts', path: '/accounts', icon: 'fa-wallet' },
     { label: 'Profile', path: '/profile', icon: 'fa-user' },

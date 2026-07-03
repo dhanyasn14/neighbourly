@@ -76,6 +76,8 @@ function Meeting() {
   const [myMeetings, setMyMeetings] = useState([]);
   const [selectedMeeting, setSelectedMeeting] = useState(null);
   const [noteDrafts, setNoteDrafts] = useState({});
+  const [meetingSummaries, setMeetingSummaries] = useState({});
+  const [summaryLoadingId, setSummaryLoadingId] = useState('');
   const [toast, setToast] = useState(null);
   const [activeTab, setActiveTab] = useState('request');
   const [activeCommunityView, setActiveCommunityView] = useState('all');
@@ -312,6 +314,28 @@ function Meeting() {
     }
   };
 
+  const handleSummarizeMeeting = async (meeting) => {
+    setSummaryLoadingId(meeting._id);
+
+    try {
+      const res = await apiFetch(`/ai/meetings/${meeting._id}/summary`, {
+        method: 'POST',
+      });
+      const data = await res.json();
+
+      if (res.ok) {
+        setMeetingSummaries(prev => ({ ...prev, [meeting._id]: data }));
+        showToast(`AI summary ready for ${meeting.meetingId}`);
+      } else {
+        showToast(data.error || 'Unable to summarize meeting notes', 'error');
+      }
+    } catch (err) {
+      showToast('Unable to reach AI summarizer', 'error');
+    } finally {
+      setSummaryLoadingId('');
+    }
+  };
+
   const renderJoinLink = (meeting) => {
     if (meeting.meetingMode !== 'Zoom' || !meeting.meetingLink) {
       return null;
@@ -331,7 +355,18 @@ function Meeting() {
 
   const renderNotes = (meeting) => (
     <div className="meeting-notes">
-      <strong>Notes</strong>
+      <div className="meeting-notes-head">
+        <strong>Notes</strong>
+        <button
+          type="button"
+          className="meeting-ai-button"
+          onClick={() => handleSummarizeMeeting(meeting)}
+          disabled={summaryLoadingId === meeting._id}
+        >
+          <i className="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
+          {summaryLoadingId === meeting._id ? 'Summarizing' : 'Summarize'}
+        </button>
+      </div>
       {(meeting.notes || []).length === 0 && <small>No notes yet.</small>}
       {(meeting.notes || []).slice(-3).map(note => (
         <p key={note._id || `${note.username}-${note.createdAt}`}>
@@ -353,6 +388,36 @@ function Meeting() {
           <i className="fa-solid fa-plus" aria-hidden="true"></i>
         </button>
       </div>
+      {meetingSummaries[meeting._id] && (
+        <div className="meeting-ai-summary">
+          <strong>AI Summary</strong>
+          <p>{meetingSummaries[meeting._id].summary}</p>
+
+          {meetingSummaries[meeting._id].decisions?.length > 0 && (
+            <div>
+              <span>Decisions</span>
+              <ul>
+                {meetingSummaries[meeting._id].decisions.map(decision => <li key={decision}>{decision}</li>)}
+              </ul>
+            </div>
+          )}
+
+          {meetingSummaries[meeting._id].actionItems?.length > 0 && (
+            <div>
+              <span>Action Items</span>
+              <ul>
+                {meetingSummaries[meeting._id].actionItems.map(item => (
+                  <li key={`${item.task}-${item.owner}`}>{item.task} · {item.owner || 'Unassigned'} · {item.dueDate || 'No date'}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {meetingSummaries[meeting._id].followUpNeeded && (
+            <small>Follow-up: {meetingSummaries[meeting._id].suggestedNextMeetingPurpose}</small>
+          )}
+        </div>
+      )}
     </div>
   );
 

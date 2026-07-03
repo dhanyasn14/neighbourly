@@ -11,6 +11,7 @@ import ShareCare from './pages/ShareCare';
 import Commspace from './pages/Commspace';
 import AppShell from './components/AppShell';
 import Alerts from './pages/Alerts';
+import CommunityAI from './pages/CommunityAI';
 
 function ProtectedRoute({ children, adminOnly = false, userType, setUserType }) {
   const token = localStorage.getItem('token');
@@ -40,6 +41,7 @@ function App() {
         <Route path="/accounts" element={<ProtectedRoute userType={userType} setUserType={setUserType}><Account /></ProtectedRoute>} />
         <Route path="/events" element={<ProtectedRoute userType={userType} setUserType={setUserType}><Event /></ProtectedRoute>} />
         <Route path="/alerts" element={<ProtectedRoute userType={userType} setUserType={setUserType}><Alerts /></ProtectedRoute>} />
+        <Route path="/ai" element={<ProtectedRoute userType={userType} setUserType={setUserType}><CommunityAI /></ProtectedRoute>} />
         <Route path="/sharecare" element={<ProtectedRoute userType={userType} setUserType={setUserType}><ShareCare /></ProtectedRoute>} />
         <Route path="/commspace" element={<ProtectedRoute userType={userType} setUserType={setUserType}><Commspace /></ProtectedRoute>} />
         <Route path="*" element={<Navigate to={localStorage.getItem('token') ? '/home' : '/'} replace />} />

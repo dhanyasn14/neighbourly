@@ -485,9 +485,37 @@
   border-top: 1px solid #e2e8f0;
 }
 
-.meeting-notes > strong {
+.meeting-notes-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+}
+
+.meeting-notes-head > strong {
   color: #172033;
   font-size: 0.86rem;
+}
+
+.meeting-ai-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  width: auto;
+  min-height: 32px;
+  margin: 0;
+  padding: 0 0.65rem;
+  border: 1px solid #bfdbfe;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-size: 0.76rem;
+  font-weight: 900;
+}
+
+.meeting-ai-button:disabled {
+  opacity: 0.65;
+  cursor: wait;
 }
 
 .meeting-notes p {
@@ -530,6 +558,52 @@
   border-radius: 8px;
   background: #ccfbf1;
   color: #0f766e;
+}
+
+.meeting-ai-summary {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 0.2rem;
+  padding: 0.7rem;
+  border: 1px solid #bfdbfe;
+  border-radius: 10px;
+  background: #eff6ff;
+}
+
+.meeting-ai-summary > strong {
+  color: #1e3a8a;
+  font-size: 0.84rem;
+}
+
+.meeting-ai-summary p {
+  padding: 0;
+  background: transparent;
+  color: #334155;
+}
+
+.meeting-ai-summary div {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.meeting-ai-summary span {
+  color: #1e3a8a;
+  font-size: 0.75rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.meeting-ai-summary ul {
+  display: grid;
+  gap: 0.25rem;
+  margin: 0;
+  padding-left: 1rem;
+}
+
+.meeting-ai-summary li {
+  padding: 0;
+  background: transparent;
+  color: #334155;
 }
 
 @media (max-width: 1100px) {

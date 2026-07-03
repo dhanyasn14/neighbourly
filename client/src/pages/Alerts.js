@@ -34,6 +34,8 @@ function Alerts() {
   const [warningForm, setWarningForm] = useState(emptyWarningForm);
   const [loading, setLoading] = useState(true);
   const [statusMessage, setStatusMessage] = useState('');
+  const [draftLoading, setDraftLoading] = useState(false);
+  const [aiDraft, setAiDraft] = useState(null);
   const [activeView, setActiveView] = useState('today');
   const isAdmin = localStorage.getItem('userType') === 'admin';
 
@@ -119,6 +121,49 @@ function Alerts() {
       setStatusMessage(data.email?.message || 'Warning alert published.');
     } else {
       setStatusMessage(data.error || 'Unable to publish warning alert.');
+    }
+  };
+
+  const handleDraftWarning = async () => {
+    const roughMessage = `${warningForm.title} ${warningForm.message}`.trim();
+
+    if (!roughMessage) {
+      setStatusMessage('Add rough alert details before generating a draft.');
+      return;
+    }
+
+    setDraftLoading(true);
+    setStatusMessage('');
+
+    try {
+      const res = await apiFetch('/ai/alerts/draft', {
+        method: 'POST',
+        body: {
+          title: warningForm.title,
+          category: warningForm.category,
+          severity: warningForm.severity,
+          roughMessage,
+        },
+      });
+      const data = await res.json();
+
+      if (res.ok) {
+        setWarningForm(prev => ({
+          ...prev,
+          title: data.title || prev.title,
+          category: data.category || prev.category,
+          severity: data.severity || prev.severity,
+          message: data.message || prev.message,
+        }));
+        setAiDraft(data);
+        setStatusMessage('AI draft applied. Review before publishing.');
+      } else {
+        setStatusMessage(data.error || 'Unable to draft warning.');
+      }
+    } catch (err) {
+      setStatusMessage('Unable to reach AI draft generator.');
+    } finally {
+      setDraftLoading(false);
     }
   };
 
@@ -283,8 +328,30 @@ function Alerts() {
               />
               <span>Email all residents</span>
             </label>
+            <button type="button" className="ai-draft-button" onClick={handleDraftWarning} disabled={draftLoading}>
+              <i className="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
+              {draftLoading ? 'Drafting' : 'Draft with AI'}
+            </button>
             <button type="submit">Publish Warning</button>
           </form>
+          {aiDraft && (
+            <div className="ai-draft-review">
+              <div>
+                <strong>Email Subject</strong>
+                <span>{aiDraft.emailSubject}</span>
+              </div>
+              <div>
+                <strong>Recommended Expiry</strong>
+                <span>{aiDraft.recommendedExpiryHours} hours</span>
+              </div>
+              {aiDraft.reviewChecklist?.length > 0 && (
+                <div className="ai-draft-checklist">
+                  <strong>Review</strong>
+                  {aiDraft.reviewChecklist.map(item => <span key={item}>{item}</span>)}
+                </div>
+              )}
+            </div>
+          )}
           {statusMessage && <p className="alert-status">{statusMessage}</p>}
         </section>
       )}

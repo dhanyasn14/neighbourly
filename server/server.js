@@ -90,6 +90,9 @@ app.use('/api/commspace', commspaceRoutes);
 
 const alertRoutes = require('./routes/alerts');
 app.use('/api/alerts', alertRoutes);
+
+const aiRoutes = require('./routes/aiRoutes');
+app.use('/api/ai', aiRoutes);
 // const todayTomorrowRoutes = require('./routes/todaytomorrow');
 // app.use('/api/todaytomorrow', todayTomorrowRoutes);
 
